@@ -1,0 +1,90 @@
+Geometric Queries in Word Embedding
+Gal Beniamini (305207136) and Assaf Brown (203457700)
+-----------------------------------------------------
+
+This directory contains the code files and resources for the "Geometric Queries in Word Embedding"
+project. What follows is a brief description of the contents of each directory, alongside some
+usage examples.
+
+corpus/
+        This directory contains the corpus file used. This file is a 500,000 sentence sample
+        processed from the "ukwac" set in the Wacky corpus. The file was generating using the
+        "tools/ukwac_to_sentences.py" script.
+
+tools/
+        ukwac_to_sentences.py
+
+                A script which can be used to convert a wacky corpus file into a list of indexed
+                sentences which can be processed by our python scripts.
+
+miniball/
+        A Python 2 port of the Python 3 bindings for Bernd Gärtner's Miniball code. The original
+        bindings can be found at:
+                 https://github.com/weddige/miniball
+
+glove/
+        A 300-dimensional GloVe embedding which can be used to construct a "hybrid" model. This 
+        embedding can be found at:
+                http://nlp.stanford.edu/data/glove.6B.zip
+
+code/
+
+        ball.py
+                Code for computing intersection volume of n-dimensional balls. For the theory
+                behind the derivation, see the Asian Journal of Mathematics and Statistics:
+                         http://docsdrive.com/pdfs/ansinet/ajms/2011/66-70.pdf
+        
+        run_model.py
+
+                Utility script for load and interacting with a created model. For example, to load
+                a model at path "models/my_model", run:
+
+                        python run_model.py "models/my_model"
+
+                Once a model is loaded, an interactive shell is presented to the user, allowing them
+                to invoke any method on the loaded model. The loaded model is placed into 'model'.
+
+        model.py
+
+                Implementation of the class representing a model which allows geometric analysis of
+                word embeddings in order to deduce semantic relations, including polysemy, context
+                "breadth", and similarity measures. Models can be loaded by invoking:
+
+                        Model.load(model_path)
+
+                Similarly, model instances can be saved to storage by invoking:
+        
+                        model.save(model_path)
+
+                For a full list of the methods supported by the model, see the source file.
+
+        embedding.py
+
+                Code for creating a model from a corpus file. This script allows for one of two
+                modes of operation:
+
+                        1. Creating a model using a co-occurrence matrix and dimensionality
+                           reduction algorithm. To create a random-projection model, use:
+
+                                python embedding.py create <CORPUS> random 0 <OUT_PATH>
+
+                           Similarly, to create a PCA model, use:
+
+                                python embedding.py create <CORPUS> pca <TARGET_DIMENSION> <OUT_PATH>
+
+                        2. Creating a model by using a co-occurrence matrix on the given corpus,
+                           but importing the embeddings from an external source. To create such
+                           a model, use: 
+
+                                python embedding.py import <CORPUS> <EMBEDDING> <DIMENSION> <OUT_PATH>
+
+                           For example, to create a model import the GloVe embedding using the ukwac
+                           500k sentences corpus, use:
+
+                                python embedding.py import 
+						    ../corpus/wacky_500k_sent.txt
+                                                    ../glove/glove.6B.300d.txt
+						    300
+                                                    <OUT_PATH>
+                        
+
