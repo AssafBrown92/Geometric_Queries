@@ -1,5 +1,5 @@
 Geometric Queries in Word Embedding
-Gal Beniamini (305207136) and Assaf Brown (203457700)
+Assaf Brown and Gal Beniamini (305207136) and 
 -----------------------------------------------------
 
 This directory contains the code files and resources for the "Geometric Queries in Word Embedding"
@@ -21,11 +21,6 @@ miniball/
         A Python 2 port of the Python 3 bindings for Bernd Gärtner's Miniball code. The original
         bindings can be found at:
                  https://github.com/weddige/miniball
-
-glove/
-        A 300-dimensional GloVe embedding which can be used to construct a "hybrid" model. This 
-        embedding can be found at:
-                http://nlp.stanford.edu/data/glove.6B.zip
 
 code/
 
@@ -88,3 +83,5 @@ code/
                                                     <OUT_PATH>
                         
 
+To use the "hybrid" model, please download your one GloVe embedding, and save it in a file named glove. 
+A 300-dimensional GloVe embedding can be found at: http://nlp.stanford.edu/data/glove.6B.zip
